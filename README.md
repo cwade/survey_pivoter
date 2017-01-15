@@ -3,7 +3,9 @@
 SurveyPivoter is a fairly simple Python 3 script that takes in a survey data file with one row per survey response and outputs a new file that's one row per question response. It's for taking files that come out of Qualtrics (or other survey software) and transforming them for use in Tableau, using [Steve Wexler's recommended methods of survey data visualization](http://www.datarevelations.com/visualizing-survey-data).
 
 It requires installation of the following python libraries (using pip install [library name] or your preferred method):
+
 pandas
+
 PyYAML
 
 *If you want the script to work on SPSS .sav files, you also need to install R and the rpy2 library.* Unfortunately installing rpy2 can be a bit challenging. We'll try to update the documentation with tips once we find them, but in the meantime, if you're just getting started, you may want to stick with csv files at first. 
@@ -11,7 +13,7 @@ PyYAML
 To run the script from the directory where it's located:
 
 ```python3 survey_pivoter.py [config_file]
-```
+'''
 
 The sample config file included here, config.yml, contains a lot of documentation about all the parameters that need to be specified for the script to work.
 
