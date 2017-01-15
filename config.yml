@@ -1,0 +1,88 @@
+# Year the survey was administered. Could be useful for creating 
+# longitudinal reshaped data
+year: 2016
+
+# How you want the survey referred to in the output file. You 
+# generally won't want to include the year here since if you're 
+# ever doing logitudinal analysis, you'll want to be able to identify
+# two surveys from different years as the same survey
+survey_name: 'Senior Survey'
+
+# The name of the column in the input data file(s) that is a unique
+# identifier for individual respondents (or individual rows in the 
+# input file)
+id_column: 'ExternalDataReference'
+
+# Name of weight column in input data file(s). If you have no weight
+# column in your input data file, make up a value here such as 'weight' 
+# or 'wt'. This column will be created in the output file with all 
+# values set to 1.
+weight_col: 'wt'
+
+# If your input file is spss format (.sav) file make sure the line 
+# below is uncommented as well as the input_filename, which is the 
+# path to the .sav file, either relative to where the survey_pivoter 
+# script is located or the full path. So if the survey_pivoter script 
+# is in the same directory as the input file, you just need to 
+# include the name of the file. If your input is two csv files rather 
+# than a sav file, set spss to False and make sure you've included 
+# settings for both input_filename_with_labels and 
+# input_filename_with_values
+# IMPORTANT NOTE: If your input is a spss file, make sure to look at the
+# README file for information on installing the rpy2 module for python.
+# If you're just starting out, you may want to go the route of two csvs
+# since installing rpy2 isn't easy.
+spss: False
+#input_filename: 'sample_data.sav'
+input_filename_with_labels: 'sample_data_l.csv'
+input_filename_with_values: 'sample_data_v.csv'
+
+# These are names of variables in the input file that you want to 
+# include in every row of the reshaped long file. They are generally 
+# metadata, or things you want to analyze the survey by. You don't
+# need to include your weight or id columns here, since they'll
+# automatically be included
+varables_to_include_in_every_row_of_output_file: [
+    'V2',
+    'V7',
+    'finished',
+    'gender',
+    'sex_a',
+    'OTHER1',
+    'OTHER2',
+    'OTHER3',
+    'race_ipeds',
+    'major1_full',
+    'major2_full',
+    'major3_full',
+    'major1',
+    'major2',
+    'major3',
+    'sex_merge',
+    'insttype',
+    'inst'
+]
+
+# These are columns you don't want to transpose - generally ids, 
+# metadata, or things that you're not going to analyze here. It's fine 
+# if you make this an empty list, you'll just end up with some extra 
+# nonsense rows in your output file
+dont_pivot: [
+    'ResponseID',
+    'ExternalDataReference',
+    'wt',
+    'V2',
+    'V7',
+    'start',
+    'end',
+    'finished'
+]
+
+# This is a list of the text responses you want to exclude from analysis
+# for all questions (not case sensitive). If you put an empty list here
+# that's fine, it just means that you may have to exclude them in 
+# Tableau later, and it will throw of the calculated 'count_negative'
+# variable. In practice you may have to run the script, look at the 
+# data in Tableau, and then tweak this list and re-run the script
+exclude_from_analysis: ['Not applicable', 'NA']
+
